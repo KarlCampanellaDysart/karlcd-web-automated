@@ -6,7 +6,6 @@ angular.module('angularSiteApp')
               username: username,
               password: password
           }).then(function (data){
-            console.log(data);
               if(data.data !== 'failure'){ 
                 Session.create(data.data); 
                 return 'success';

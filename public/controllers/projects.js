@@ -11,21 +11,23 @@ angular.module('angularSiteApp')
   .controller('ProjectsCtrl', function ($scope, github, Parse) {
 
     github.getAllRepos().then(function(data){
-      var options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        timeZone: 'UTC',
-        timeZoneName: 'short'
-      };
-      for(var i=0;i<data.data.length;i++){
-        data.data[i].created_at = (new Date(Date.parse(data.data[i].created_at))).toLocaleDateString('en-US', options);
-        data.data[i].updated_at = (new Date(Date.parse(data.data[i].updated_at))).toLocaleDateString('en-US', options);
-      }
-      $scope.repos = data.data;
-    });
 
+        var options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            timeZone: 'UTC',
+            timeZoneName: 'short'
+        };
+        
+        for(var i=0;i<data.data.length;i++){
+            data.data[i].created_at = (new Date(Date.parse(data.data[i].created_at))).toLocaleDateString('en-US', options);
+            data.data[i].updated_at = (new Date(Date.parse(data.data[i].updated_at))).toLocaleDateString('en-US', options);
+        }
+
+        $scope.repos = data.data;
+    });
 
     // Parse.getAllProjects().then(function(data){
     //   console.log(data);
@@ -95,37 +97,3 @@ angular.module('angularSiteApp')
     // };
 
 });
-
-angular.module('angularSiteApp')
-  .factory('github', function ($http, $cacheFactory){
-    return {        
-      getAllRepos: function(){
-        if($cacheFactory.get('allRepos')){
-          return new Promise(function(resolve, reject){
-            return $cacheFactory.get('allRepos');
-          });   
-        }
-        else{
-          return $http.get('github/repos', function(data){
-            $cacheFactory.put('allRepos', data.data);
-            return data.data;
-          });
-        }        
-      },
-
-      getReadme: function(owner, repo){
-        if($cacheFactory.get(repo)){
-          return new Promise(function(resolve, reject){
-            return $cacheFactory.get(repo);
-          });   
-        }
-        else{
-          return $http.get('github/'+owner+'/'+repo+'/readme', function(data){
-            $cacheFactory.put(repo, data.data);
-            return data.data;
-          });
-        }
-      }
-    };
-  });
-

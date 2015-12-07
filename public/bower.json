@@ -18,6 +18,13 @@
     "tests"
   ],
   "dependencies": {
-    "Chart.js": "~1.0.2"
+    "Chart.js": "~1.0.2",
+    "angular-mocks": "~1.4.8",
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "font-awesome": "~4.5.0",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6",
+    "angular-chart.js": "~0.8.7"
   }
 }
