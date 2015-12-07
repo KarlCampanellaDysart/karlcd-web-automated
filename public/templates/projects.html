@@ -1,0 +1,123 @@
+<div ng-controller="ProjectsCtrl">
+	<div class="col-md-12">
+		<!-- <section id="totallyjs">
+			<div class="row"><h1>{{totallyjs.title}}</h1></div>
+			<div class="row">
+				
+				<p>The code on github can be found <a href="https://github.com/KarlCampanellaDysart/totallyjs">here.</a>
+			</div>
+		</section>
+		<br>
+
+		<section id="mahlet">
+			<div class="row"><h1>{{mahlet.title}}</h1></div>
+			<div class="row">
+				<p>{{mahlet.intro}}</p>
+				<p>{{mahlet.tech}}</p>
+			</div>
+		</section>
+		<br>
+
+		<section id="comp">
+			<div class="row"><h1>{{comp.title}}</h1></div>
+			<div class="row">
+				<p>{{comp.intro}}</p>
+				<p>{{comp.tech}}</p>
+				<p>{{comp.notes}}</p>
+				<p>The code on github can be found <a href="{{comp.linkCode}}">here.</a> A video demonstration of the application can be found <a href="{{comp.link}}">here.</a></p>
+			</div>
+		</section>
+		<br>
+		<section id="lots">
+	    	<div class="row"><h1>{{lots.title}}</h1></div>
+	    	<div class="row">
+	    		<p>{{lots.p1}}</p>
+	    		<p>{{lots.p2}}</p>
+	    		<p><a href="{{lots.link}}">You can access the code here.</a></p>
+	    	</div>
+	    </section>
+	    <br>
+
+	    <section id="javasim">
+	    	<div class="row"><h1>{{javaSim.title}}</h1></div>
+	    	<div class="row">
+	    		<p>{{javaSim.intro}}</p>
+				<p>The code can be found <a href="{{javaSim.link}}">here.</a></p>
+	    	</div>
+	    </section>
+	    <br>
+	    
+	    <section id="instyle">
+	    	<div class="row"><h1>{{inStyle.title}}</h1></div>
+	    	<div class="row">
+	    		<p>{{inStyle.intro}}</p>
+	    		<h3>{{inStyle.feature.title}}</h3>
+	    		<p>{{inStyle.feature.content}}</p>
+	    	</div>
+	    </section>
+	    <br>
+
+	    <section id="dp">
+	        <div class="row"><h1>{{dp.title}}</h1></div>
+	        <div class="row">
+	        	<p>{{dp.p1}}</p>
+	        	<p>The actual site can be found <a href="{{dp.link}}">here.</a> The code for the site can be found <a href="{{dp.linkCode}}">here.</a></p>
+	        </div>
+	    </section>
+	    <br>
+
+	    <section id="hh">
+	    	<div class="row"><h1>{{hh.title}}</h1></div>
+	    	<div class="row">
+	    		<p>{{hh.intro}}</p>
+				<p>{{hh.p1}}</p>
+				<p>The code for this project can be found <a href="{{hh.link}}">here.</a></p>
+	    	</div>
+	    </section>
+	    <br>
+
+	    <section id="risc">
+	    	<div class="row"><h1>{{riscEmulator.title}}</h1></div>
+	    	<div class="row">
+	    		<p>{{riscEmulator.p1}}</p>
+	    		<p>{{riscEmulator.p2}}</p>
+	    		<p><a href="{{riscEmulator.link}}">You can access the code here.</a></p>
+	    	</div>
+	    </section>
+	    <br>
+	    
+	    
+	    <br> -->
+	    <section ng-repeat="repo in repos" id="{{repo.id}}">
+			<div class="row underscore">
+				<div class="col-sm-12">
+					<h1>{{repo.name}} <span class="badge">{{repo.language}}</span> <span ng-if="repo.private" class="badge">private</span></h1>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-12"><p><strong>Created:</strong> {{repo.created_at}}</p></div>
+			</div>
+			 <div class="row">        	
+        		<div class="col-sm-12"><p><strong>Last Updated:</strong> {{repo.updated_at}}</p></div>
+	        </div>
+			<div class="row">
+				<div class="col-sm-12"><p><strong>Description:</strong> {{repo.description}}</p></div>
+			</div>
+	        <div class="row">
+	        	<div class="col-sm-12"><a href="#/projects/{{repo.name}}/readme">See More...</a></div>
+	        </div>
+	    </section>
+	    <br>
+	    <br>
+	</div>
+
+	<!-- <div class="col-md-3">
+		<nav class="hidden-print hidden-sm hidden-xs affix"  id="side-nav">
+	      <ul class="nav nav-list">
+	      	<li ng-repeat="repo in repos"><a href="#/projects#{{repo.id}}">{{repo.name}}</a></li>	 
+	      </ul>
+	    </nav>
+	</div> -->
+
+</div>

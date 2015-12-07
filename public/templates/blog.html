@@ -1,0 +1,10 @@
+<div ng-repeat="post in posts" class="row">
+	<div class="col-sm-12 underscore">
+		<h1>{{post.title}} <span class="badge">{{post.timestamp}}</span></h1>
+	</div>
+	<br>
+	<div class="col-sm-12 upperSpace" ng-bind-html="post.content | trustHTML">
+	</div>
+</div>
+<br>
+

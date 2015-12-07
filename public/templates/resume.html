@@ -1,0 +1,170 @@
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Interactive Resume</h2>
+	</div>
+</div>
+<div class="row">
+	<div class ="col-sm-12">
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" >
+					<h3 class="panel-title">
+						<a ng-click="accordionClick('academics')" 
+							role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="academics">
+							<span><i class="fa fa-graduation-cap"></i></span> 
+							<span class="text-primary"> Academics</span>
+						</a>
+					</h3>
+				</div>
+				<div id="academics" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="academics">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<h4 popover class="pull-left text-danger" data-toggle="popover" 
+									title="USC" data-content="Los Angeles, California, 90007">
+										University of Southern California
+								</h4>
+							</div>		
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<ul>
+									<li data-toggle="tooltip" data-placement="left" title="expected graduation in May 2016" class="text-muted">
+										Bachelors of Science in Computer Science
+									</li>
+									<li data-toggle="tooltip" data-placement="left" title="Major: 3.9, Cumulative: 3.56" class="text-muted">
+										GPAs
+									</li>
+									<li data-toggle="tooltip" data-placement="left" title="Fall 2013, Fall 2014, Spring 2015" class="text-muted">
+										Dean’s list
+									</li>
+								</ul>
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<h4 popover type="button" class="pull-left text-danger" data-toggle="popover" 
+									title="last updated December 2015" data-content="brief class info is given below">
+									Relevant Coursework
+								</h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<ul>
+									<li ng-repeat="course in courses">	
+										<div tooltip data-toggle="tooltip" data-placement="left" title="{{course.coursedescription}}">
+											<div class="text-muted">{{course.coursename}}</div>
+										</div>
+									</li>			
+								</ul>
+							</div>
+						</div>					
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" >
+					<h3 class="panel-title">
+						<a ng-click="accordionClick('experience')"
+							class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="experience">		
+							<span><i class="fa fa-briefcase"></i></span> 
+							<span class="text-primary"> Job and Volunteer Experience</span>
+						</a>
+					</h3>
+				</div>
+				<div id="experience" class="panel-collapse collapse" role="tabpanel" aria-labelledby="experience">
+					<div class="panel-body">
+						<div ng-repeat="experience in experiences">
+							<div class="row">
+								<div class="col-sm-12">
+									<h4 popover
+										type="button" class="pull-left text-danger" data-toggle="popover"
+										data-content="{{experience.shortexperiencedescription}}">
+										{{experience.experiencetitle}}
+									</h4>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div ng-repeat="point in experience.points">
+										<h5>{{point.title}}</h5>
+										<ul><li ng-repeat="sp in point.subPoints">
+											<div class="text-muted">{{sp}}</div>
+										</li></ul>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" >
+					<h4 class="panel-title">
+					<a ng-click="accordionClick('languages')"
+						class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="languages">	  
+						<span><i class="fa fa-code"></i></span> 
+						<span class="text-primary"> Languages and Skills</span>
+					</a>
+					</h4>
+				</div>
+				<div id="languages" class="panel-collapse collapse" role="tabpanel" aria-labelledby="languages">
+					<div class="panel-body">
+						<p class="text-muted">Language data is pulled directly from project data seen on this website. The languages and skills here are meant to be an accruate representation of my overall experience with languages. Since there is a lot of code I have written that is not accounted for on my github I have also manually added languages to more accuratly represent my skills.</p>
+
+						<div class="row" ng-repeat="lang in langs">
+							<div class="col-sm-12">
+								<div tooltip data-toggle="tooltip" data-placement="left" title="{{lang.num}} total lines">
+									<h4 class="text-danger" ng-bind="lang.lang | returnCorrectLang"></h4>
+								</div>
+								<ul><li>
+									<span ng-repeat="proj in lang.projects">
+									<a href="#/projects/{{proj}}/readme">{{proj}}</a>{{($index==lang.projects.length-1) ? ' ' : ', '}}</span>
+								</li></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" >
+					<h4 class="panel-title">
+					<a ng-click="accordionClick('hackathons')"
+						class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="hackathons">	  
+						<span><i class="fa fa-trophy"></i></span> 
+						<span class="text-primary"> Hackathons</span>
+					</a>
+					</h4>
+				</div>
+				<div id="hackathons" class="panel-collapse collapse" role="tabpanel" aria-labelledby="hackathons">
+					<div class="panel-body">	
+						<div ng-repeat="hackathon in hackathons">
+							<div class="row">
+								<div class="col-sm-12">
+									<h4 popover
+										type="button" class="pull-left text-danger" data-toggle="popover"
+										data-content="{{hackathon.shorthackathondescription}}">
+										{{hackathon.hackathontitle}}
+									</h4>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div ng-repeat="point in hackathon.points">
+										<h5>{{point.title}}</h5>
+										<ul><li ng-repeat="sp in point.subPoints">
+											<div class="text-muted">{{sp}}</div>
+										</li></ul>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

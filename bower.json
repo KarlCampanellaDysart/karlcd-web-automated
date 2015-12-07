@@ -1,0 +1,23 @@
+{
+  "name": "karlcd_web",
+  "description": "KarlCampanellaDysart's personal website",
+  "main": "app.js",
+  "authors": [
+    "KarlCampanellaDysart"
+  ],
+  "license": "ISC",
+  "keywords": [],
+  "moduleType": [],
+  "homepage": "karlcd.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Chart.js": "~1.0.2"
+  }
+}

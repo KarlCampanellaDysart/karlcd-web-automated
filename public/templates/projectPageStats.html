@@ -1,0 +1,58 @@
+<div class="row">
+	<ul class="nav nav-tabs nav-justified">
+	    <li role="presentation">
+	    	<a href="#/projects/{{name}}/readme" aria-controls="readme" role="tab">{{name}} Readme</a>
+	    </li>
+	    <li role="presentation" class="active">
+	    	<a href="#/projects/{{name}}/stats" aria-controls="stats" role="tab">{{name}} Statistics</a>
+	    </li>
+	</ul>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-sm-12"><h2>General Project Data</h2></div>
+	<div class="col-sm-12">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<h4>Statistics Last Updated On <code>{{lastUpdate}}</code></h4>
+			</li>
+			<li class="list-group-item">
+				<h4>Project Name: <code>{{name}}</code></h4>
+			</li>
+			<li class="list-group-item"><h4><code>{{totalCommits}}</code> total personal commits </h4><span class="badge"></span></li>
+			<li class="list-group-item"><h4>All Languages/Technologies Used:</h4>
+				<ul>
+					<li ng-repeat="lang in allLangs">
+						<strong>{{lang.num}}</strong> lines of <code ng-bind="lang.lang | returnCorrectLang"></code>
+					</li>
+				</ul>
+				
+			</li>
+		</ul>
+	</div>
+
+	<div class="col-sm-12"><h2>General Graphical Data</h2></div>
+	<div class="col-sm-12"><h3><span><i class="fa fa-line-chart"></i></span> Total Additions/Deletions</h3></div>
+	<canvas id="line" class="chart chart-line" 
+		chart-data="adChart.data" 
+		chart-labels="adChart.labels" 
+		chart-legend="true" 
+		chart-series="adChart.series" >
+	</canvas> 
+
+	
+
+	<div class="col-sm-12"><h2>Language-Specific Graphical Data</h2></div>
+	<div ng-repeat="chart in langTimeCharts">
+		<div class="col-sm-12">
+			<h3><span><i class="fa fa-bar-chart"></i> <span ng-bind="chart.type | returnCorrectLang"></span></span> Code Written</h3>
+		</div>
+		<canvas id="chart.type" class="chart chart-bar"
+			chart-data="chart.data" 
+			chart-labels="chart.labels"
+			chart-series="chart.series">
+		</canvas>
+	</div>
+</div>

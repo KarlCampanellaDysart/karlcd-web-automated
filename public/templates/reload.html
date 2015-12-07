@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-sm-12"><h1>Admin Update</h1></div>
+</div>
+
+<form ng-repeat="repo in repos" class="form-horizontal" ng-submit="submit(repo.name, repo.owner.login)">
+	<div  class="row">
+		<div class="underscore">
+				<div class="pull-left"><h3>{{repo.name}}</h3></div>
+				<div class="pull-right"><button class="btn btn-primary btn-small" type="submit">Update</button></div>
+		</div>
+	</div>	
+</form>

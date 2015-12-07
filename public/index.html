@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>karlcd</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    <link rel="stylesheet" href="styles/main.css">
+ 
+  </head>
+  <body ng-app="angularSiteApp">
+  
+    <div class="jumbotron container-fluid">
+
+    <div class="header row">
+      <div class="navbar col-lg-12" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="glyphicon glyphicon-th-list"></span>
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/"><span class="glyphicon glyphicon-home"></span></a>
+          </div>
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+              <li><a href="#/"><span><i class="fa fa-question-circle"></i></span> About</a></li>
+              <li><a ng-href="#/projects"><span><i class="fa fa-archive"></i></span> Projects</a></li>
+              <li><a ng-href="#/resume"><span><i class="fa fa-file-text"></i></span> Resume</a></li>
+              <li><a ng-href="#/blog"><span><i class="fa fa-comments"></i></span> Blog</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#/authenticate"><span><i class="fa fa-key"></i></span> Sign In</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+        <div class="hidden-xs hidden-md hidden-lg hidden-xl"> 
+          <div class="col-md-6">
+            <h1>Karl Campanella-Dysart</h1>
+            <p> Web and Software Engineer. Technology enthusiast.</p>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <a class="btn" href="https://github.com/KarlCampanellaDysart"><span><i class="fa fa-github-square fa-2x"></i></span></a>            
+              <a class="btn" href="https://www.facebook.com/karlcd"><span><i class="fa fa-facebook-official fa-2x"></i></span></a>           
+              <a class="btn" href="https://www.linkedin.com/profile/view?id=325562231&trk=nav_responsive_tab_profile_pic"><span><i class="fa fa-linkedin-square fa-2x"></i></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden-xs hidden-sm">
+          <div class="col-md-2 col-md-offset-2">
+            <img src="images/self_pic.jpg">        
+          </div>
+          <div class="col-md-6">
+            <h2>Karl Campanella-Dysart</h2>
+            <p> Web and Software Engineer. Technology enthusiast.</p>
+            <a class="btn" href="https://github.com/KarlCampanellaDysart"><span><i class="fa fa-github-square fa-2x"></i></span></a>       
+              <a class="btn" href="https://www.facebook.com/karlcd"><span><i class="fa fa-facebook-official fa-2x"></i></span></a>       
+              <a class="btn" href="https://www.linkedin.com/profile/view?id=325562231&trk=nav_responsive_tab_profile_pic"><span><i class="fa fa-linkedin-square fa-2x"></i></span></a>        
+          </div>
+          
+        </div>
+
+        <div class="hidden-sm hidden-md hidden-lg hidden-xl">
+          <div class="col-md-2 col-md-offset-2">
+            <img src="images/self_pic.jpg">        
+          </div>
+          <div class="col-xs-12">
+            <h1>Karl C-D</h1>
+            <p> Web and Software Engineer. Technology enthusiast.</p>          
+          </div>
+          <div class="col-xs-4">
+            <a class="btn" href="https://github.com/KarlCampanellaDysart"><span><i class="fa fa-github-square"></i></span></a>
+          </div>
+          <div class="col-xs-4">
+            <a class="btn" href="https://www.facebook.com/karlcd"><span><i class="fa fa-facebook-official"></i></span></a>
+          </div>
+          <div class="col-xs-4">
+            <a class="btn" href="https://www.linkedin.com/profile/view?id=325562231&trk=nav_responsive_tab_profile_pic"><span><i class="fa fa-linkedin-square"></i></span></a>
+          </div>  
+        </div>
+      </div>        
+    </div>
+
+    <div class="container content">
+      <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p><span class="glyphicon glyphicon-copyright-mark"></span> karlcd.com</p>
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="main.js"></script>
+    <script src="controllers/projects.js"></script>
+    <script src="controllers/about.js"></script>
+    <script src="controllers/resume.js"></script>
+    <script src="controllers/authenticate.js"></script>
+    <script src="controllers/projectPageReadme.js"></script>
+    <script src="controllers/projectPageStats.js"></script>
+    <script src="controllers/reload.js"></script>
+    <script src="controllers/blog.js"></script>
+    <script src="factories/authenticate.js"></script>
+    <script src="factories/session.js"></script>
+    <script src="factories/parse.js"></script>
+    <script src="factories/gsheet.js"></script>
+    <script src="filters/trustHTML.js"></script>
+    <script src="filters/returnCorrectLang.js"></script>
+    <script src="directives/tooltip.js"></script>
+    <script src="directives/popover.js"></script>
+</body>
+</html>
