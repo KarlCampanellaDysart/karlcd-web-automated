@@ -4,7 +4,8 @@
   "description": "KarlCampanellaDysart's personal website",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start"
+    "start": "cd public && bower install && cd .. && node app.js",
+    "test": "cd public && bower install && cd .. && ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   },
   "keywords": [],
   "author": "KarlCampanellaDysart",
@@ -15,7 +16,8 @@
     "cheerio": "^0.19.0",
     "express": "^4.13.3",
     "google-spreadsheet": "^1.0.1",
-    "htmlparser": "^1.7.7"
+    "htmlparser": "^1.7.7",
+    "node-cache": "^3.0.0"
   },
   "devDependencies": {
     "jasmine-core": "^2.3.4",
@@ -23,9 +25,5 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
     "phantomjs": "^1.9.18"
-  },
-  "scripts": {
-    "start": "cd public && bower install && cd .. && node app.js",
-    "test": "cd public && bower install && cd .. && ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   }
 }
