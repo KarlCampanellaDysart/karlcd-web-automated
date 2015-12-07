@@ -25,6 +25,6 @@
     "phantomjs": "^1.9.18"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
+    "test": "cd public && bower install && cd .. && ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   }
 }
