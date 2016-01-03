@@ -8,7 +8,7 @@ var cheerio = require("cheerio");
 var REPO_EXCEPTIONS = /(itp|git-lab|Callisto|Labs|cs201final-project|SampleRepo|hey|ee201-project)/g;
 
 // all langs
-var LANG_CHECK = /(^js$|^html$|^java$|^cpp$|^c$|^php$|^handlebars$|^css$|^v$|^s$|^h$|^m$)/g;
+var LANG_CHECK = /(^js$|^html$|^java$|^cpp$|^c$|^php$|^handlebars$|^css$|^v$|^s$|^h$|^m$|^py$)/g;
 
 // libraries that I have used, not written
 var POPULAR_LIBRARIES = /(jquery|bootstrap|Chart.js|require.js)/g;

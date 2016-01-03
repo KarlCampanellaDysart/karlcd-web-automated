@@ -120,12 +120,13 @@ body {
     50% {opacity: .2; }
     100% {opacity: .9; }
 }
-@keyframes flipInX { 
+
+/*@keyframes flipInX { 
     0% { transform: perspective(400px) rotateX(90deg); opacity: 0; } 
     40% { transform: perspective(400px) rotateX(-10deg); } 
     70% { transform: perspective(400px) rotateX(10deg); } 
     100% { transform: perspective(400px) rotateX(0deg); opacity: 1; } 
-} 
+} */
 
 /* Apply animations */
 .glyphicon:hover{
@@ -137,11 +138,12 @@ body {
 .jumbotron h2:hover{
     animation:title_anim 3s linear infinite;
 }
-.content h1{
+
+/*.content h1{
     animation-name:flipInX; 
     animation-duration: 2s; 
     animation-fill-mode: both; 
-}
+}*/
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
