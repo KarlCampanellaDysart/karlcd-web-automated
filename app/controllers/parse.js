@@ -1,4 +1,3 @@
-var Parse = require('parse');
 var config = require('../config/config');
 var request = require('request');
 var github = require('../controllers/github');
