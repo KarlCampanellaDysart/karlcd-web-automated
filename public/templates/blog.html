@@ -1,3 +1,9 @@
+<div class="row" ng-if="!posts" style="text-align: center">
+	<br>
+	<i class="fa fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></i>
+	<br>
+	<br>
+</div>
 <div ng-repeat="post in posts" class="row">
 	<div class="col-sm-12 underscore">
 		<h1>{{post.title}} <span class="badge">{{post.timestamp}}</span></h1>

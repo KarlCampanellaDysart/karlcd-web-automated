@@ -9,6 +9,8 @@ module.exports = function(app){
 	});
 
 	app.get('/github/:owner/:repo/readme', function(req, res) {
-	    github.getReadmeForRepo(req.params.owner, req.params.repo, function(data){ res.json(data); });
+	    github.getReadmeForRepo(req.params.owner, req.params.repo, function(data){ 
+	    	res.json(data); 
+	    });
 	});
 };

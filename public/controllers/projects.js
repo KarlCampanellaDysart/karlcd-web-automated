@@ -8,10 +8,24 @@
  * Controller of the angularSiteApp
  */
 angular.module('angularSiteApp')
-  .controller('ProjectsCtrl', function ($scope, Gsheet) {
+  .controller('ProjectsCtrl', function ($scope, github) {
 
-    // getting data for courses
-    Gsheet.getWeb().then(function(data){
-        $scope.web = data.data;
+    github.getAllRepos().then(function(data){
+
+        var options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            timeZone: 'UTC',
+            timeZoneName: 'short'
+        };
+        
+        for(var i=0;i<data.data.length;i++){
+            data.data[i].created_at = (new Date(Date.parse(data.data[i].created_at))).toLocaleDateString('en-US', options);
+            data.data[i].updated_at = (new Date(Date.parse(data.data[i].updated_at))).toLocaleDateString('en-US', options);
+        }
+
+        $scope.repos = data.data;
     });
 });

@@ -8,7 +8,7 @@
  * Controller of the angularSiteApp
  */
 angular.module('angularSiteApp')
-.controller('ResumeCtrl', function ($scope, Gsheet, Parse) {
+.controller('ResumeCtrl', function ($scope, Gsheet, parse) {
 
 
   	// activate tooltips and popovers
@@ -97,17 +97,17 @@ angular.module('angularSiteApp')
 	});
     
 	// get data from all of the projects
-	Parse.getAllProjects().then(function(data){
+	parse.getAllProjects().then(function(data){
 
 		var langObject = {};
 
 		// tally up data on all projects
-		for(var i=0;i<data.data.results.length;i++){
+		for(var i=0;i<data.data.length;i++){
         
             // make naming easier
-            var project = data.data.results[i];        
+            var project = data.data[i];        
 
-			// set up graph data
+			// set up graph datas
             for(var j=0;j<project.fileData.length;j++){
 
         		// go through individual changes and tally

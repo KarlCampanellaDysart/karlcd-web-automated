@@ -8,7 +8,7 @@
  * Controller of the angularSiteApp
  */
 angular.module('angularSiteApp')
-.controller('ProjectPageStatsCtrl', function ($scope, $filter, Parse, $routeParams, github) {
+.controller('ProjectPageStatsCtrl', function ($scope, $filter, parse, $routeParams, github) {
 
 	// options for date format
 	var options = { 
@@ -24,102 +24,98 @@ angular.module('angularSiteApp')
 	var orderBy = $filter('orderBy');
 
 	// get our project
-	Parse.getAllProjects().then(function(data){
-		for(var i=0;i<data.data.results.length;i++){
-            if(data.data.results[i].name === projectName){ 
+	parse.getProject(projectName).then(function(data){
 
-            	// make naming easier
-            	var project = data.data.results[i];        
+    	// make naming easier
+    	var project = data.data;        
 
-            	// set metadate
-            	$scope.lastUpdate = (new Date(Date.parse(project.updatedAt))).toLocaleDateString('en-US', options)
-            	$scope.totalCommits = project.fileData.length;
-            	
+    	// set metadate
+    	$scope.lastUpdate = (new Date(Date.parse(project.updatedAt))).toLocaleDateString('en-US', options)
+    	$scope.totalCommits = project.fileData.length;
+    	
 
-            	// order the file data by date
-            	project.fileData = orderBy(project.fileData, 'date', false);
+    	// order the file data by date
+    	project.fileData = orderBy(project.fileData, 'date', false);
 
-            	// scope for the charts
-            	$scope.adChart = {};
-            	$scope.adChart.labels = [];
-				$scope.adChart.series = ['additions', 'deletions'];
-				$scope.adChart.data = [[],[]];
+    	// scope for the charts
+    	$scope.adChart = {};
+    	$scope.adChart.labels = [];
+		$scope.adChart.series = ['additions', 'deletions'];
+		$scope.adChart.data = [[],[]];
 
-				// all of our lanuage charts
-				$scope.langTimeCharts = [];
-				
+		// all of our lanuage charts
+		$scope.langTimeCharts = [];
+		
 
-				// optional options
-				$scope.options = {};
-				
-				// set up graph data
-				var langObject = {};
-            	for(var j=0;j<project.fileData.length;j++){
+		// optional options
+		$scope.options = {};
+		
+		// set up graph data
+		var langObject = {};
+    	for(var j=0;j<project.fileData.length;j++){
 
-            		// go through individual changes and tally
-            		for(var k in project.fileData[j].changes){
-            			if(langObject[k] !== undefined){
-            				langObject[k] += project.fileData[j].changes[k].additions;
-            				langObject[k] -= project.fileData[j].changes[k].deletions;
-            			}
-            			else{
-            				langObject[k] = project.fileData[j].changes[k].additions;
-            				langObject[k] -= project.fileData[j].changes[k].deletions;
-            			}
-            		}
+    		// go through individual changes and tally
+    		for(var k in project.fileData[j].changes){
+    			if(langObject[k] !== undefined){
+    				langObject[k] += project.fileData[j].changes[k].additions;
+    				langObject[k] -= project.fileData[j].changes[k].deletions;
+    			}
+    			else{
+    				langObject[k] = project.fileData[j].changes[k].additions;
+    				langObject[k] -= project.fileData[j].changes[k].deletions;
+    			}
+    		}
 
-            		// update add del chart data
-            		var changes = project.fileData[j].changes
-					$scope.adChart.labels.push((new Date(Date.parse(project.fileData[j].date))).toLocaleDateString('en-US', options));
+    		// update add del chart data
+    		var changes = project.fileData[j].changes
+			$scope.adChart.labels.push((new Date(Date.parse(project.fileData[j].date))).toLocaleDateString('en-US', options));
 
-					$scope.adChart.data[0].push(project.fileData[j].total_changes.additions);
-					$scope.adChart.data[1].push(project.fileData[j].total_changes.deletions);
-            	}
+			$scope.adChart.data[0].push(project.fileData[j].total_changes.additions);
+			$scope.adChart.data[1].push(project.fileData[j].total_changes.deletions);
+    	}
 
-            	// set up more metadata
-            	var allLangs = [];
-            	var count = 0;
-            	for(var j in langObject){
-        
-        			// make chart data
-        			var num = 0;
-        			if(langObject[j] > 0){ num = langObject[j]; }
-            		allLangs.push({
-            			lang: j,
-            			num: num
-            		});
+    	// set up more metadata
+    	var allLangs = [];
+    	var count = 0;
+    	for(var j in langObject){
 
-            		// setup lang charts
-            		$scope.langTimeCharts[count++] = {
-            			type: j,
-            			labels: [],
-            			data: [[],[]],
-            			series: ['additions', 'deletions']
-            		}; 
-            	}
+			// make chart data
+			var num = 0;
+			if(langObject[j] > 0){ num = langObject[j]; }
+    		allLangs.push({
+    			lang: j,
+    			num: num
+    		});
 
-            	// set the series to all of the languages
-            	$scope.allLangs = allLangs;
+    		// setup lang charts
+    		$scope.langTimeCharts[count++] = {
+    			type: j,
+    			labels: [],
+    			data: [[],[]],
+    			series: ['additions', 'deletions']
+    		}; 
+    	}
 
-				// go through file data
-				for(var j=0;j<project.fileData.length;j++){
+    	// set the series to all of the languages
+    	$scope.allLangs = allLangs;
 
-					for(var k=0;k<allLangs.length;k++){
+		// go through file data
+		for(var j=0;j<project.fileData.length;j++){
 
-						// setup all lables the same
-						$scope.langTimeCharts[k].labels.push((new Date(Date.parse(project.fileData[j].date))).toLocaleDateString('en-US', options));
+			for(var k=0;k<allLangs.length;k++){
 
-						if(project.fileData[j].changes[allLangs[k].lang] !== undefined){
-							$scope.langTimeCharts[k].data[0].push(project.fileData[j].changes[allLangs[k].lang].additions);
-							$scope.langTimeCharts[k].data[1].push(project.fileData[j].changes[allLangs[k].lang].deletions);
-						}
-						else{
-							$scope.langTimeCharts[k].data[0].push(0);
-							$scope.langTimeCharts[k].data[1].push(0);
-						}
-					}               		
-            	}
-            }
-        }
+				// setup all lables the same
+				$scope.langTimeCharts[k].labels.push((new Date(Date.parse(project.fileData[j].date))).toLocaleDateString('en-US', options));
+
+				if(project.fileData[j].changes[allLangs[k].lang] !== undefined){
+					$scope.langTimeCharts[k].data[0].push(project.fileData[j].changes[allLangs[k].lang].additions);
+					$scope.langTimeCharts[k].data[1].push(project.fileData[j].changes[allLangs[k].lang].deletions);
+				}
+				else{
+					$scope.langTimeCharts[k].data[0].push(0);
+					$scope.langTimeCharts[k].data[1].push(0);
+				}
+			}               		
+    	}
 	});
 });

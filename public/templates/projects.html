@@ -1,4 +1,10 @@
-<div ng-controller="ProjectsCtrl">
+<div class="row" ng-if="!repos" style="text-align: center">
+	<br>
+	<i class="fa fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></i>
+	<br>
+	<br>
+</div>
+<div class="row">
 	<div class="col-md-12">	
 	    <section ng-repeat="repo in repos" id="{{repo.id}}">
 			<div class="row underscore">
@@ -11,7 +17,7 @@
 				<div class="col-sm-12"><p><strong>Created:</strong> {{repo.created_at}}</p></div>
 			</div>
 			 <div class="row">        	
-        		<div class="col-sm-12"><p><strong>Last Updated:</strong> {{repo.updated_at}}</p></div>
+	    		<div class="col-sm-12"><p><strong>Last Updated:</strong> {{repo.updated_at}}</p></div>
 	        </div>
 			<div class="row">
 				<div class="col-sm-12"><p><strong>Description:</strong> {{repo.description}}</p></div>
@@ -24,3 +30,4 @@
 	    <br>
 	</div>
 </div>
+
