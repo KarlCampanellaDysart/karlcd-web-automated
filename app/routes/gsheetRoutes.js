@@ -22,4 +22,8 @@ module.exports = function(app){
 	app.get('/gsheet/skills', function(req, res) {
 	    gsheet.getAllSkills(function(data){ res.json(data); });
 	});
+
+	app.get('/gsheet/web', function(req, res) {
+	    gsheet.getAllWeb(function(data){ res.json(data); });
+	});
 };

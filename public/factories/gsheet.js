@@ -25,6 +25,11 @@ angular.module('angularSiteApp')
 			return $http.get('gsheet/skills', function(data){
 				return data.data;
 			});
+		},
+		getWeb: function(){
+			return $http.get('gsheet/web', function(data){
+				return data.data;
+			});
 		}
     };
 });

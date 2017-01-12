@@ -15,7 +15,6 @@ angular.module('angularSiteApp')
 
   	$scope.submit = function(username, password){
   		Auth.login(username, password).then(function (data){
-  			console.log(data);
 	    	if(data === 'success'){ $location.path('/reload'); }
 	    });
   	}  

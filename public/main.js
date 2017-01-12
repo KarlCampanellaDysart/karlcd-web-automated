@@ -22,6 +22,10 @@ angular
         templateUrl: 'templates/projects.html',
         controller: 'ProjectsCtrl'
       })
+      .when('/web', {
+        templateUrl: 'templates/web.html',
+        controller: 'WebCtrl'
+      })
       .when('/resume', {
         templateUrl: 'templates/resume.html',
         controller: 'ResumeCtrl'
