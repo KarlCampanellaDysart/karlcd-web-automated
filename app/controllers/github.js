@@ -1,5 +1,5 @@
 var request = require('request');
-var config = require('../config/config');
+//var config = require('../config/config');
 var NodeCache = require( "node-cache" );
 var myCache = new NodeCache( { checkperiod: 1800 } );
 var cheerio = require("cheerio");
@@ -22,7 +22,7 @@ var allRepos = function(callback) {
 		var options = {
 			headers: { 
 				'User-Agent': 'request',
-				'Authorization': config.github_token
+				'Authorization': process.env.github_token
 			},
     		url: baseUrl
 		}
@@ -52,7 +52,7 @@ var getReadmeForRepo = function(owner, repo, callback) {
 		var options = {
 			headers: { 
 				'User-Agent': 'request',
-				'Authorization': config.github_token 
+				'Authorization': process.env.github_token 
 			},
     		url: baseUrl
 		};
@@ -82,7 +82,7 @@ var getCommitWithSha = function(repo, name, sha, callback){
 	var options = {
 		headers: { 
 			'User-Agent': 'request',
-			'Authorization': config.github_token 
+			'Authorization': process.env.github_token 
 		},
 		url: baseUrl
 	};
@@ -101,7 +101,7 @@ var getAllCommitsForRepo = function(repo, name, page, callback) {
 	var options = {
 		headers: { 
 			'User-Agent': 'request',
-			'Authorization': config.github_token 
+			'Authorization': process.env.github_token 
 		},
 		url: baseUrl
 	};
@@ -165,7 +165,7 @@ var analyzeSingleFile = function(file, callback){
 			// make an api call to content_url
 			var contents_url = file.contents_url;
 			var options = {
-				headers: { 'User-Agent': 'request', 'Authorization': config.github_token },
+				headers: { 'User-Agent': 'request', 'Authorization': process.env.github_token },
 	    		url: contents_url
 			} 
 			request(options, function(error, response, body) {
@@ -199,7 +199,7 @@ var analyzeSingleFile = function(file, callback){
 			// make an api call to content_url
 			var contents_url = file.contents_url;
 			var options = {
-				headers: { 'User-Agent': 'request', 'Authorization': config.github_token },
+				headers: { 'User-Agent': 'request', 'Authorization': process.env.github_token },
 	    		url: contents_url
 			}			 
 			request(options, function(error, response, body) {

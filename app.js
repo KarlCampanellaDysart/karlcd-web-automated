@@ -1,3 +1,7 @@
+// load environment
+var dotenv = require('dotenv');
+dotenv.load();
+
 // import necessary things
 var express = require('express');
 var app = express();
@@ -10,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // setup api routes
 require('./app/routes/githubRoutes')(app);
-require('./app/routes/parseRoutes')(app);
+require('./app/routes/mlabRoutes')(app);
 require('./app/routes/gsheetRoutes')(app);
 require('./app/routes/loginRoutes')(app);
 

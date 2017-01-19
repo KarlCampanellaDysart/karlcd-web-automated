@@ -1,13 +1,13 @@
 angular.module('angularSiteApp')
-.factory('parse', function ($http){
+.factory('mlab', function ($http){
     return {
 		getProject: function(name){
-			return $http.get('/parse/'+name, function(data){
+			return $http.get('/mlab/'+name, function(data){
 				return data;
 			});
 		},
 		getAllProjects: function(){
-			return $http.get('/parse', function(data){
+			return $http.get('/mlab', function(data){
 				return data;
 			});
 		}	

@@ -8,7 +8,7 @@
  * Controller of the angularSiteApp
  */
 angular.module('angularSiteApp')
-.controller('ResumeCtrl', function ($scope, Gsheet, parse) {
+.controller('ResumeCtrl', function ($scope, Gsheet, mlab) {
 
 
   	// activate tooltips and popovers
@@ -97,7 +97,7 @@ angular.module('angularSiteApp')
 	});
     
 	// get data from all of the projects
-	parse.getAllProjects().then(function(data){
+	mlab.getAllProjects().then(function(data){
 
 		var langObject = {};
 

@@ -10,7 +10,7 @@
  */
 angular
   .module('angularSiteApp', [
-    'ngRoute', 'chart.js'
+    'ngRoute', 'chart.js', 'ngCookies'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -46,6 +46,13 @@ angular
         templateUrl: 'templates/authenticate.html',
         controller: 'AuthenticateCtrl',
       })
+      .when('/deauthenticate', {
+        templateUrl: 'templates/deauthenticate.html',
+        controller: 'DeauthenticateCtrl',
+        access: {
+            requiresLogin: true
+        }
+      })
       .when('/blog', {
         templateUrl: 'templates/blog.html',
         controller: 'BlogCtrl',
@@ -62,11 +69,15 @@ angular
       });
   });
 
-angular.module('angularSiteApp').run(['$rootScope','$location', 'Session', function ($rootScope, $location, Session){
+angular.module('angularSiteApp').run(['$rootScope','$location', '$cookies', function ($rootScope, $location, $cookies){
     $rootScope.$on('$routeChangeStart', function (event, next){
         var authNeeded = next.access && next.access.requiresLogin;
         if(authNeeded){        
-            if(!Session.id){ $location.path('/'); }
+            if(!$cookies.get('auth_token')){ 
+              $location.path('/'); 
+            } else {
+              $rootScope.authenticated = true;
+            }
         }
     });
 }]);

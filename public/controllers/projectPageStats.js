@@ -8,7 +8,7 @@
  * Controller of the angularSiteApp
  */
 angular.module('angularSiteApp')
-.controller('ProjectPageStatsCtrl', function ($scope, $filter, parse, $routeParams, github) {
+.controller('ProjectPageStatsCtrl', function ($scope, $filter, mlab, $routeParams, github) {
 
 	// options for date format
 	var options = { 
@@ -24,7 +24,7 @@ angular.module('angularSiteApp')
 	var orderBy = $filter('orderBy');
 
 	// get our project
-	parse.getProject(projectName).then(function(data){
+	mlab.getProject(projectName).then(function(data){
 
     	// make naming easier
     	var project = data.data;        

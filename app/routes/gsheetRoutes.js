@@ -1,5 +1,4 @@
 var gsheet = require('../controllers/gsheet');
-var config = require('../config/config');
 
 module.exports = function(app){
 

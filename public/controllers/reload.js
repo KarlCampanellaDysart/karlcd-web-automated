@@ -8,18 +8,17 @@
  * Controller of the angularSiteApp
  */
 angular.module('angularSiteApp')
-  .controller('ReloadCtrl', function ($scope, github, $http, Session) {
+  .controller('ReloadCtrl', function ($scope, github, $http, $cookies) {
 
     github.getAllRepos().then(function(data){
       $scope.repos = data.data;
     });
 
     $scope.submit = function(name, owner){
-      console.log(owner +' : '+ name);
 
       //update POST
-      $http.post('/parse/'+ name +'/'+ owner, {
-        token: Session.getId()
+      $http.post('/mlab/'+ name +'/'+ owner, {
+        token: $cookies.get('auth_token')
       }).then(function(data){
         console.log(data);
       });

@@ -46,7 +46,6 @@ body {
   padding-top: 0px;
   padding-bottom: 10px;
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
   background-color: rgb(238, 250, 252);
 }
 .jumbotron h1{
@@ -77,21 +76,22 @@ body {
 
 /* Navbar styling */
 .navbar{
-  background-color: rgb(238, 250, 252);
+  background-color: white;
   border: none;
-  border-bottom: 1px solid #e5e5e5;
+  /*border-bottom: 1px solid #e5e5e5;*/
 }
 .navbar li a{
   color: rgba(100, 185, 210, .75);
 }
 .navbar li a:hover{
   color: rgba(100, 185, 210, 1);
-  background-color: rgb(238, 250, 252);
+  background-color: white;
 }
 .navbar li a:focus{
   color: rgba(100, 185, 210, 1);
-  background-color: rgb(238, 250, 252);
+  background-color: white;
 }
+
 .navbar-header a{
   color: black;
 }
@@ -102,7 +102,7 @@ body {
 }
 .content h1, h2{
   color: #64b9d2;
-  font-weight: lighter;
+  font-weight: normal;
 }
 .content li a{
   color: #64b9d2;

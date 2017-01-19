@@ -1,8 +1,61 @@
-var config = require('../config/config');
 var request = require('request');
 var github = require('../controllers/github');
-var mLab = require('mongolab-data-api')(config.MLAB_API_KEY);
+var passwordHash = require('password-hash');
+var mLab = require('mongolab-data-api')(process.env.MLAB_API_KEY);
 var PROJECT = 'project';
+var USER = 'user';
+
+var verifyUsernameWithPassword = function (username, password, callback) {
+	mLab.listDocuments({
+		database: process.env.MLAB_DB_NAME,
+		collectionName: USER,
+		query: JSON.stringify({username: username}),
+		findOne: true
+	}, function (err, data) {
+	    if (err || !data) {
+	    	callback({
+	    		success: false,
+	    		msg: 'username not found'
+	    	});
+	    } else {
+	    	if (passwordHash.verify(password, data.password)) {
+	    		callback({
+		    		success: true,
+		    		msg: 'logged in'
+		    	});
+	    	} else {
+	    		callback({
+		    		success: false,
+		    		msg: 'password incorrect'
+		    	});
+	    	}
+	    }
+	});
+}
+
+var registerUsernameWithPassword = function (username, password, callback) {
+	mLab.insertDocuments({
+		database: process.env.MLAB_DB_NAME,
+		collectionName: USER,
+		documents: {
+			username: username, 
+			password: passwordHash.generate(password)
+		}
+	}, function (err, data) {
+		if (err || !data) {
+			callback({
+	    		success: false,
+	    		msg: 'account not created'
+	    	});
+		} else {
+			console.log(data);
+			callback({
+	    		success: true,
+	    		msg: 'account created'
+	    	});
+    	}					
+	});
+}
 
 var updateProjectWithData = function(repo, name, allCommits, res){
 
@@ -36,14 +89,14 @@ var updateProjectWithData = function(repo, name, allCommits, res){
 						//check if last commit
 						if(commitCount === commitMax){
 							mLab.listDocuments({
-								database: config.MLAB_DB_NAME,
+								database: process.env.MLAB_DB_NAME,
 								collectionName: PROJECT,
 								query: JSON.stringify({name: repo}),
 								findOne: true
 							}, function (err, data) {
 							    if (err || !data) {
 							    	mLab.insertDocuments({
-										database: config.MLAB_DB_NAME,
+										database: process.env.MLAB_DB_NAME,
 										collectionName: PROJECT,
 										documents: {
 											name: repo, 
@@ -53,12 +106,11 @@ var updateProjectWithData = function(repo, name, allCommits, res){
 											createAt: new Date()
 										}
 									}, function (err, data) {					
-									    console.log(repo+' updated');
 										res.json(repo+' updated');
 									});
 							    } else {
 							    	mLab.updateDocuments({
-										database: config.MLAB_DB_NAME,
+										database: process.env.MLAB_DB_NAME,
 										collectionName: PROJECT,
 										data: {
 											fileData: allCommitData,
@@ -66,7 +118,6 @@ var updateProjectWithData = function(repo, name, allCommits, res){
 										},
 										query: JSON.stringify({_id: data._id})
 									}, function (err, data) {					
-									    console.log(repo+' updated');
 					  					res.json(repo+' updated');
 									});
 							    }
@@ -94,7 +145,7 @@ var getAllRepoCommits = function(repo, name, pageNumber, allBasicCommitData, res
 
 var getProject = function(name, callback){
 	mLab.listDocuments({
-		database: config.MLAB_DB_NAME,
+		database: process.env.MLAB_DB_NAME,
 		collectionName: PROJECT,
 		query: JSON.stringify({name: name}),
 		findOne: true
@@ -109,7 +160,7 @@ var getProject = function(name, callback){
 
 var getAllProjects = function (callback) {
 	mLab.listDocuments({
-		database: config.MLAB_DB_NAME,
+		database: process.env.MLAB_DB_NAME,
 		collectionName: 'project'
 	}, function (err, data) {
 	    if (err || data.length === 0) console.log(err);
@@ -121,6 +172,8 @@ module.exports = {
 	getAllRepoCommits: getAllRepoCommits,
 	updateProjectWithData: updateProjectWithData,
 	getProject: getProject,
-	getAllProjects: getAllProjects
+	getAllProjects: getAllProjects,
+	registerUsernameWithPassword: registerUsernameWithPassword,
+	verifyUsernameWithPassword: verifyUsernameWithPassword
 };
 

@@ -8,11 +8,11 @@
  * Controller of the angularSiteApp
  */
 angular.module('angularSiteApp')
-.controller('ProjectPageReadmeCtrl', function ($scope, parse, $routeParams, github) {
+.controller('ProjectPageReadmeCtrl', function ($scope, mlab, $routeParams, github) {
       $scope.resolve = false;
 	var projectName = $routeParams.project;
 	$scope.name = projectName;
-	parse.getProject(projectName).then(function(data){
+	mlab.getProject(projectName).then(function(data){
       	$scope.project = data.data; 
       	github.getReadme($scope.project.owner, $scope.project.name).then(function(data){
       		$scope.readme = data.data; 	
