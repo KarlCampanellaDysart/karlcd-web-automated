@@ -1,10 +1,10 @@
 <div class="row">
 	<ul class="nav nav-tabs nav-justified">
 	    <li role="presentation">
-	    	<a href="#!/projects/{{name}}/readme" aria-controls="readme" role="tab">{{name}} Readme</a>
+	    	<a href="#!/projects/{{name}}/readme" aria-controls="readme" role="tab">Readme</a>
 	    </li>
 	    <li role="presentation" class="active">
-	    	<a href="#!/projects/{{name}}/stats" aria-controls="stats" role="tab">{{name}} Statistics</a>
+	    	<a href="#!/projects/{{name}}/stats" aria-controls="stats" role="tab">Statistics</a>
 	    </li>
 	</ul>
 </div>
@@ -20,6 +20,12 @@
 			</li>
 			<li class="list-group-item">
 				<h4>Project Name: <code>{{name}}</code></h4>
+			</li>
+			<li class="list-group-item">
+				<h4>Github Link: 
+					<a ng-if="!private" ng-href="{{ghlink}}">{{ghlink}}</a>
+					<code ng-if="private" >Repo is Private</code>
+				</h4>
 			</li>
 			<li class="list-group-item"><h4><code>{{totalCommits}}</code> total personal commits </h4><span class="badge"></span></li>
 			<li class="list-group-item"><h4>All Languages/Technologies Used:</h4>

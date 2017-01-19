@@ -23,6 +23,15 @@ angular.module('angularSiteApp')
 	$scope.name = projectName;
 	var orderBy = $filter('orderBy');
 
+    github.getAllRepos().then(function (data) {
+        for(var i=0; i< data.data.length; i++) {
+            if (data.data[i].name === projectName) {
+                $scope.ghlink = data.data[i].html_url;
+                $scope.private = data.data[i].private;
+            }
+        }
+    });
+
 	// get our project
 	mlab.getProject(projectName).then(function(data){
 
