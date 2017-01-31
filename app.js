@@ -1,6 +1,5 @@
 // load environment
-var dotenv = require('dotenv');
-dotenv.load();
+require('dotenv').config();
 
 // import necessary things
 var express = require('express');

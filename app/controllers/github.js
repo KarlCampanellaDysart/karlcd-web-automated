@@ -1,5 +1,4 @@
 var request = require('request');
-//var config = require('../config/config');
 var NodeCache = require( "node-cache" );
 var myCache = new NodeCache( { checkperiod: 1800 } );
 var cheerio = require("cheerio");

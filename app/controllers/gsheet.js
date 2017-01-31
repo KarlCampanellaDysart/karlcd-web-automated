@@ -8,7 +8,17 @@ var skillSheet = new GoogleSpreadsheet('1Y5tmiYDmLao5FwTXzVLqVjzTPLDFSD8lRkFBMI_
 var webSheet = new GoogleSpreadsheet('1HkJsawMML8qWTrxIlsI5t9HfdeJLQrWk5b1Wbe0Dvt0');
 
 // oAuth credentials
-var creds = require('./../config/karlcd-web-52a20a887ee7.json');
+var creds = {
+	"type": process.env.gs_type,
+  	"private_key_id": process.env.gs_private_key_id,
+  	"private_key": process.env.gs_private_key,
+  	"client_email": process.env.gs_client_email,
+  	"client_id": process.env.gs_client_id,
+  	"auth_uri": process.env.gs_auth_uri,
+  	"token_uri": process.env.gs_token_uri,
+  	"auth_provider_x509_cert_url": process.env.gs_auth_provider_x509_cert_url,
+  	"client_x509_cert_url": process.env.gs_client_x509_cert_url
+};
 
 var getAllBlogPosts = function(callback){
 	blogSheet.useServiceAccountAuth(creds, function(err){
