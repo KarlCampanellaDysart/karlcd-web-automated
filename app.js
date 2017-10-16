@@ -17,5 +17,4 @@ require('./app/routes/mlabRoutes')(app);
 require('./app/routes/gsheetRoutes')(app);
 require('./app/routes/loginRoutes')(app);
 
-//listen
-app.listen(process.env.PORT || 5000);
+module.exports = app;

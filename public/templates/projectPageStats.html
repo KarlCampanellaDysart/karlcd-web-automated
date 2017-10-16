@@ -48,12 +48,10 @@
 		chart-series="adChart.series" >
 	</canvas> 
 
-	
-
 	<div class="col-sm-12"><h2>Language-Specific Graphical Data</h2></div>
 	<div ng-repeat="chart in langTimeCharts">
 		<div class="col-sm-12">
-			<h3><span><i class="fa fa-bar-chart"></i> <span ng-bind="chart.type | returnCorrectLang"></span></span> Code Written</h3>
+			<h3><span><i class="fa fa-bar-chart"></i> <span ng-bind="chart.type | returnCorrectLang"></span></span> Written</h3>
 		</div>
 		<canvas id="chart.type" class="chart chart-bar"
 			chart-data="chart.data" 

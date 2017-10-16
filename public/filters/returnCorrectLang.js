@@ -3,7 +3,7 @@ angular.module('angularSiteApp')
   return function(fileExtention){
 
   	if(fileExtention === 's'){return 'assembly'; }
-  	else if(fileExtention === 'h'){ return 'cpp in .h'; }
+  	else if(fileExtention === 'h'){ return 'C++'; }
   	else if(fileExtention === 'js'){ return 'javascript'; }
   	else if(fileExtention === 'm'){ return 'objective c'; }
   	else if(fileExtention === 'cpp') { return 'C++'; }
