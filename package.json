@@ -1,9 +1,10 @@
 {
-  "name": "karlcd_web",
+  "name": "karlcd-web-automated",
   "version": "0.0.0",
   "description": "KarlCampanellaDysart's personal website",
   "main": "app.js",
   "scripts": {
+    "postinstall": "cd public && bower install",
     "start": "cd public && bower install && cd .. && node app.js",
     "test": "cd public && bower install && cd .. && ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   },
@@ -24,7 +25,6 @@
     "request": "^2.67.0"
   },
   "devDependencies": {
-    "dotenv": "^4.0.0",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.15",
     "karma-jasmine": "^0.3.6",
